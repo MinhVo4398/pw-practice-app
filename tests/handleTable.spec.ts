@@ -4,7 +4,7 @@ test.beforeEach(async ({ page }) => {
   await page.goto("http://localhost:4200/pages/iot-dashboard");
 });
 
-test.only("Handle table", async ({ page }) => {
+test("Handle table", async ({ page }) => {
   await page.getByText("Tables & Data").click();
   await page.getByText("Smart Table").click();
   //* Test filter with table
