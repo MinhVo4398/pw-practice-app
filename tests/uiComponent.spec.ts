@@ -140,6 +140,28 @@ test.describe("Form layout page", () => {
     await expect(page.locator("table tr").first()).not.toHaveText("mdo@gmail.com");
   })
   
+  test('web table', async ({ page }) => {
+    await page.getByText("Tables & Data").click();
+    await page.getByText("Smart Table").click();
 
+    //* Get the row by any text in this row
+    const targetRow = page.getByRole("row", {name:"twitter@outlook.com"});
+    await targetRow.locator(".nb-edit").click();
+    // After click edit, locator has change to input so that cannot reuse targetRow 
+    // So that use other locator like placeholder
+    await page.locator("input-editor").getByPlaceholder("Age").clear();
+    await page.locator("input-editor").getByPlaceholder("Age").fill("35");
+    await page.locator(".nb-checkmark").click();
+
+    //* 2 Get the row based on the value in the specific column
+    await page.locator(".ng2-smart-pagination-nav").getByText("2").click();
+    const targetRowById = page.getByRole("row", {name:"11"}).filter({has: page.locator("td").nth(1).getByText("11")})
+    await targetRowById.locator(".nb-edit").click();
+    await page.locator("input-editor").getByPlaceholder("E-mail").clear();
+    await page.locator("input-editor").getByPlaceholder("E-mail").fill("test@test.com");
+    await page.locator(".nb-checkmark").click();
+    await expect(targetRowById.locator("td").nth(5)).toHaveText("test@test.com");
+  })
+  
   
 });
