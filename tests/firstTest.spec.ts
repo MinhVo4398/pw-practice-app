@@ -43,7 +43,7 @@ test("User facing locator", async ({ page }) => {
   await page.getByTestId("SignIn").click();
 });
 
-test.only("Locating child elements", async ({ page }) => {
+test("Locating child elements", async ({ page }) => {
   await page.locator("nb-card nb-radio :text-is('Option 1')").click();
   await page
     .locator("nb-card")
