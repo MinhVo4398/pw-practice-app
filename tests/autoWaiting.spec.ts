@@ -36,4 +36,7 @@ test("Alternative waits", async ({ page }) => {
   expect(text).toContain("Data loaded with AJAX get request.");
 });
 
-console.log("Minh");
+test('Timeouts', async ({ page }) => {
+  const successButton = page.locator(".bg-success");
+  await successButton.click();
+})
