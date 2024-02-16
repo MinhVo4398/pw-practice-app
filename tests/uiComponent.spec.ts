@@ -21,6 +21,26 @@ test.describe('Form layout page', () => {
         //* Locator assertion
         await expect(usingtheGridEmailInput).toHaveValue("test@test.com");
     })
+
+    test('Radio button', async ({ page }) => {
+        const usingtheGridForm  = page.locator("nb-card",{hasText:"Using the Grid"});
+
+       // await usingtheGridForm.getByLabel("Option 1").check({force: true});
+        await usingtheGridForm.getByRole("radio", {name:"Option 1"}).check({force:true});
+        //* First way validation
+        const radioStatus = await usingtheGridForm.getByRole("radio", {name:"Option 1"}).isChecked();
+        expect(radioStatus).toBeTruthy();
+
+        //* Second way validation
+        await expect(usingtheGridForm.getByRole("radio", {name:"Option 1"})).toBeChecked();
+
+        //Validate choose option 2, and verify option 1 is not checked
+        await usingtheGridForm.getByRole("radio", {name:"Option 2"}).check({force:true});
+        expect(await usingtheGridForm.getByRole("radio", {name:"Option 1"}).isChecked()).toBeFalsy();
+        expect(await usingtheGridForm.getByRole("radio", {name:"Option 2"}).isChecked()).toBeTruthy();
+
+    })
+    
     
 })
 
