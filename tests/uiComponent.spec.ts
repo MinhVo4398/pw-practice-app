@@ -105,9 +105,27 @@ test.describe("Form layout page", () => {
         if(color != "Corporate") {
             await dropdownMenu.click();
         }
-   
     }
 
   })
+
+  test('Tooltips', async ({ page }) => {
+    await page.getByText("Modal & Overlays").click();
+    await page.getByText("Tooltip").click();
+
+    const toolTipCard = page.locator("nb-card",{hasText:"Tooltip Placements"});
+    await toolTipCard.getByRole("button",{name:"Top"}).hover();
+
+    //check tooltips
+    page.getByRole("tooltip") // work if you have a role tooltip created
+    //* Way 1
+    //const tooltipsValue = page.locator("nb-tooltip", {hasText:"This is a tooltip"});
+    //await expect(tooltipsValue).toHaveText("This is a tooltip")
+
+    //* Way 2
+    const tooltip = await page.locator("nb-tooltip").textContent();
+    expect(tooltip).toEqual("This is a tooltip");
+  })
+
   
 });
