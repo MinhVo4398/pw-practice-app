@@ -12,7 +12,7 @@ test.only("Datepicker test", async ({ page }) => {
   await calenderInputField.click();
     
   let date = new Date();
-  date.setDate(date.getDate() + 14); // get 7 days from today
+  date.setDate(date.getDate() + 15); // get 15 days from today
   const expectedDate = date.getDate().toString(); // convert number to String
   const expectedMonthShot = date.toLocaleDateString("En-US",{month:"short"}); // Ex Jul (July);
   const expectedMonthLong = date.toLocaleDateString("En-US", {month:"long"});
