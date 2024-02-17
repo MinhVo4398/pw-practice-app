@@ -10,9 +10,22 @@ test.only("Datepicker test", async ({ page }) => {
 
   const calenderInputField = page.getByPlaceholder("Form Picker");
   await calenderInputField.click();
+    
+  let date = new Date();
+  date.setDate(date.getDate() + 14); // get 7 days from today
+  const expectedDate = date.getDate().toString(); // convert number to String
+  const expectedMonthShot = date.toLocaleDateString("En-US",{month:"short"}); // Ex Jul (July);
+  const expectedMonthLong = date.toLocaleDateString("En-US", {month:"long"});
+  const expectedYear = date.getFullYear();
+  const dateToAssert = `${expectedMonthShot} ${expectedDate}, ${expectedYear}`
 
-  await page.locator("[class='day-cell ng-star-inserted']").getByText("1", {exact:true}).click();
-  await expect(calenderInputField).toHaveValue("Feb 1, 2024");
+  let calendarMothAndYear = await page.locator("nb-calendar-view-mode").textContent();
+  const expectedMonthAndYear = `${expectedMonthLong} ${expectedYear}`
+  while(!calendarMothAndYear.includes(expectedMonthAndYear)) {
+      await page.locator(".next-month").click();
+      calendarMothAndYear = await page.locator("nb-calendar-view-mode").textContent();
+  }
 
- 
+  await page.locator("[class='day-cell ng-star-inserted']").getByText(expectedDate, {exact:true}).click();
+  await expect(calenderInputField).toHaveValue(dateToAssert);
 }); 
