@@ -1,15 +1,16 @@
 import { Page, Locator } from "@playwright/test";
+import { HelperBase } from "./helperBase";
 
-export class NavigationPage {
-  readonly page: Page;
+export class NavigationPage extends HelperBase{
 
   constructor(page: Page) {
-    this.page = page;
+   super(page)
   }
 
   async formLayoutsPage() {
     await this.selectGroupMenuItem("Forms");
     await this.page.getByText("Form Layouts").click();
+    await this.waitForNumberOfSeconds(5);
   }
 
   async datePickerDate() {
@@ -36,7 +37,7 @@ export class NavigationPage {
    * @param groupItemTitle
    */
   private async selectGroupMenuItem(groupItemTitle: string) {
-    const groupMenuItem = this.page.getByTitle(groupItemTitle);
+    const groupMenuItem =  this.page.getByTitle(groupItemTitle);
     const expandedState = await groupMenuItem.getAttribute("aria-expanded");
     if (expandedState == "false") {
       // if false means collapse
