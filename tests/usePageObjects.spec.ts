@@ -30,7 +30,7 @@ test.only("Parametrized methods", async ({ page }) => {
     .onFormLayoutsPage()
     .submitInlineFormWithNameEmailAndCheckbox("David", "test@test.com", false);
   await pm.navigateTo().datePickerDate();
-  await pm.onDatepickerPage().selectCommonDatePickerDateFromToday(9);
-  await pm.onDatepickerPage().selectDatepickerWithRangeFromToday(6, 10);
+  await pm.onDatepickerPage().selectCommonDatePickerDateFromToday(5);
+  await pm.onDatepickerPage().selectDatepickerWithRangeFromToday(6, 11);
   await page.pause();
 });
