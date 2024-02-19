@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
-  await page.goto("http://localhost:4200/pages/iot-dashboard");
+  await page.goto("/");
 });
 
 test("Slider test", async ({ page }) => {

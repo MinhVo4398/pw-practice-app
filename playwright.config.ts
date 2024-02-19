@@ -1,6 +1,9 @@
 import { defineConfig, devices } from "@playwright/test";
+import type { TestOptions } from "./test-option";
 
-export default defineConfig({
+require('dotenv').config();
+
+export default defineConfig<TestOptions>({
   retries: 1,
   timeout: 40000,
   globalTimeout: 60000,
@@ -10,11 +13,10 @@ export default defineConfig({
 
   use: {
     baseURL:
-      process.env.DEV === "1"
-        ? "http://localhost:4201/"
-        : process.env.STAGING == "1"
-        ? "http://localhost:4202/"
-        : "http://localhost:4200/",
+      process.env.DEV === "1" ? "http://localhost:4201/" : 
+      process.env.STAGING == "1" ? "http://localhost:4202/"
+      : "http://localhost:4200/",  
+    globalsQaUrl: 'https://www.globalsqa.com/demo-site/draganddrop/',
     trace: "on-first-retry",
     screenshot: "only-on-failure",
     actionTimeout: 20000,
@@ -29,6 +31,10 @@ export default defineConfig({
     {
       name: "dev",
       use: { ...devices["Desktop Chrome"], baseURL: "http://localhost:4201/" },
+    },
+    {
+      name: "staging",
+      use: { ...devices["Desktop Chrome"], baseURL: "http://localhost:4202/" },
     },
     {
       name: "chromium",

@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { delay } from 'rxjs/operators';
 
 test.beforeEach(async ({ page }) => {
-  await page.goto("http://localhost:4200/pages/iot-dashboard");
+  await page.goto("/");
 });
 
 test.describe.only("Form layout page", () => {
