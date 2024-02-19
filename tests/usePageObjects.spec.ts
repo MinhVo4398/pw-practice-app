@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { PageManager } from "../page-objects/pageManager";
+import { faker } from "@faker-js/faker";
 
 test.beforeEach(async ({ page }) => {
   await page.goto("http://localhost:4200/pages/iot-dashboard");
@@ -17,6 +18,8 @@ test("Navigate to form page", async ({ page }) => {
 
 test.only("Parametrized methods", async ({ page }) => {
   const pm = new PageManager(page);
+  const randomFullName = faker.person.fullName();
+  const randomEmail = `${randomFullName.replace(' ','')}${faker.number.int(100)}@test.com`;
 
   await pm.navigateTo().formLayoutsPage();
   await pm
@@ -28,9 +31,14 @@ test.only("Parametrized methods", async ({ page }) => {
     );
   await pm
     .onFormLayoutsPage()
-    .submitInlineFormWithNameEmailAndCheckbox("David", "test@test.com", false);
-  await pm.navigateTo().datePickerDate();
-  await pm.onDatepickerPage().selectCommonDatePickerDateFromToday(5);
-  await pm.onDatepickerPage().selectDatepickerWithRangeFromToday(6, 11);
+    .submitInlineFormWithNameEmailAndCheckbox(
+      randomFullName,
+      randomEmail,
+      false
+    );
+  // await pm.navigateTo().datePickerDate();
+  // await pm.onDatepickerPage().selectCommonDatePickerDateFromToday(5);
+  // await pm.onDatepickerPage().selectDatepickerWithRangeFromToday(6, 11);
   await page.pause();
 });
+ 
