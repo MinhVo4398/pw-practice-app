@@ -19,7 +19,9 @@ test("Navigate to form page", async ({ page }) => {
 test.only("Parametrized methods", async ({ page }) => {
   const pm = new PageManager(page);
   const randomFullName = faker.person.fullName();
-  const randomEmail = `${randomFullName.replace(' ','')}${faker.number.int(100)}@test.com`;
+  const randomEmail = `${randomFullName.replace(" ", "")}${faker.number.int(
+    100
+  )}@test.com`;
 
   await pm.navigateTo().formLayoutsPage();
   await pm
@@ -36,9 +38,8 @@ test.only("Parametrized methods", async ({ page }) => {
       randomEmail,
       false
     );
-  // await pm.navigateTo().datePickerDate();
-  // await pm.onDatepickerPage().selectCommonDatePickerDateFromToday(5);
-  // await pm.onDatepickerPage().selectDatepickerWithRangeFromToday(6, 11);
+  await pm.navigateTo().datePickerDate();
+  await pm.onDatepickerPage().selectCommonDatePickerDateFromToday(5);
+  await pm.onDatepickerPage().selectDatepickerWithRangeFromToday(6, 11);
   await page.pause();
 });
- 

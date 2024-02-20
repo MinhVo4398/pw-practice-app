@@ -20,8 +20,8 @@ export default defineConfig<TestOptions>({
     globalsQaUrl: 'https://www.globalsqa.com/demo-site/draganddrop/',
     trace: "on-first-retry",
     screenshot: "only-on-failure",
-    actionTimeout: 20000,
-    navigationTimeout: 25000,
+    //actionTimeout: 20000,
+    //navigationTimeout: 25000,
     video: {
       mode: "off",
       size: { width: 1920, height: 1080 },
