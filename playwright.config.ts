@@ -1,6 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 import type { TestOptions } from "./test-option";
 
+
 require('dotenv').config();
 
 export default defineConfig<TestOptions>({
