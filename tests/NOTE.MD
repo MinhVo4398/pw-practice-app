@@ -9,3 +9,7 @@ Run config in package.json
 +  npm run pageObjects-chrome
 +  npm run pageObjects-firefox
 +  npm run pageObjects-all
+
+
+Allure report:
+https://www.npmjs.com/package/allure-playwright

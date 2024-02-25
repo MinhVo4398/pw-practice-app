@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"failed","Sun Feb 25 08:38:02 ICT 2024","Sun Feb 25 08:38:10 ICT 2024","8209","chromium","usePageObjects.spec.ts","","","","Parametrized methods @smoke",""
