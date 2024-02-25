@@ -6,7 +6,7 @@ require("dotenv").config();
 export default defineConfig<TestOptions>({
   retries: 1,
   timeout: 40000,
-  globalTimeout: 60000,
+  //globalTimeout: 60000,
   testDir: "./tests",
   fullyParallel: false,
   reporter: [["allure-playwright"], ["html"]],
@@ -59,5 +59,10 @@ export default defineConfig<TestOptions>({
         ...devices["iPhone 13 Pro"],
       },
     },
+    
   ],
+  webServer: {
+    command: 'npm run start',
+    url: 'http://localhost:4200/'
+  }
 });

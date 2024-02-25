@@ -39,7 +39,7 @@ test.only("Parametrized methods @smoke", async ({ page }) => {
       false
     );
   await pm.navigateTo().datePickerDate();
-  await pm.onDatepickerPage().selectCommonDatePickerDateFromToday(5);
+  await pm.onDatepickerPage().selectCommonDatePickerDateFromToday(9);
   await pm.onDatepickerPage().selectDatepickerWithRangeFromToday(6, 11);
   await page.pause();
 });
